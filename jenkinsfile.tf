@@ -6,7 +6,7 @@ resource "aws_db_instance" "default" {
   engine               = "mysql"
   engine_version       = "5.7"
   instance_class       = "db.t2.micro"
-  name                 = "cpms"
+  name                 = "studentmsdb"
   identifier           = "myrdb2"
   username             = "admin"
   password             = "Ramrebel56"
@@ -17,8 +17,8 @@ resource "aws_db_instance" "default" {
 }
 resource "aws_launch_configuration" "as_conf" {
   depends_on = [aws_db_instance.default]
-  name_prefix   = my-lc3-cli
-  image_id      = ami-0629230e074c580f2
+  name_prefix   = "my-lc3-cli"
+  image_id      = "ami-0629230e074c580f2"
   instance_type = t2.micro
   security_groups    = sg-0bb5391635b3c304es
   key_name = "jenkins"
@@ -26,7 +26,7 @@ resource "aws_launch_configuration" "as_conf" {
    user_data = templatefile("${path.module}/userdata.tftpl", {endpoint = aws_db_instance.default.endpoint,password = aws_db_instance.default.password,address = aws_db_instance.default.address})
 }
 resource "aws_autoscaling_group" "bar" {
-  name                 = my-asg3-cli 
+  name                 = "my-asg3-cli" 
   depends_on           = ["aws_launch_configuration.as_conf"]
   launch_configuration = aws_launch_configuration.as_conf.my-lc3-cli
   min_size             = 1
