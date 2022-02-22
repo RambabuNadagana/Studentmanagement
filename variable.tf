@@ -28,7 +28,7 @@ variable "load_balancer_type" {
 }
 variable "security_groups" {
   type = list(string)
-  default = ["sg-017c097bb1674f881"]
+  default = ["sg-0bb5391635b3c304es"]
 }
 variable "subnets" {
   type = list(string)
@@ -52,4 +52,6 @@ variable "target_id" {
 }
 variable "target_group_arns" {
 }
+
+
 
