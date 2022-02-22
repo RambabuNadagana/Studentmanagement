@@ -18,4 +18,4 @@ resource "aws_autoscaling_group" "bar" {
   target_group_arns   = [var.target_group_arns]
  availability_zones = var.availability_zones
 }
-}
+
