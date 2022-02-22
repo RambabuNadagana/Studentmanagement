@@ -6,7 +6,6 @@ resource "aws_launch_configuration" "as_conf" {
   image_id      = var.image_id
   instance_type = var.instance_type
   security_groups    = var.security_groups
-   user_data = templatefile("${path.module}/userdata.tftpl", {endpoint = aws_db_instance.default.endpoint,password = aws_db_instance.default.password,address = aws_db_instance.default.address})
 }
 resource "aws_autoscaling_group" "bar" {
   name                 = var.name 
