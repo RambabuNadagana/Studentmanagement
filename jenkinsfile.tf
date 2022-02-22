@@ -1,20 +1,6 @@
 provider "aws" {
   region = "us-east-2"
 }
-resource "aws_db_instance" "default" {
-  allocated_storage    = 10
-  engine               = "mysql"
-  engine_version       = "5.7"
-  instance_class       = "db.t2.micro"
-  name                 = "studentmsdb"
-  identifier           = "myrdb2"
-  username             = "admin"
-  password             = "Ramrebel56"
-  parameter_group_name = "default.mysql5.7"
-  skip_final_snapshot  = true
-  publicly_accessible  = true
-  vpc_security_group_ids = ["sg-0bb5391635b3c304e"]
-}
 resource "aws_launch_configuration" "as_conf" {
   name_prefix   = var.name_prefix
   image_id      = var.image_id
