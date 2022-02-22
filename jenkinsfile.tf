@@ -20,7 +20,6 @@ resource "aws_launch_configuration" "as_conf" {
   image_id      = var.image_id
   instance_type = var.instance_type
   security_groups    = var.security_groups
-  user_data = "${file("userdata.sh")}"
    user_data = templatefile("${path.module}/userdata.tftpl", {endpoint = aws_db_instance.default.endpoint,password = aws_db_instance.default.password,address = aws_db_instance.default.address})
 }
 resource "aws_autoscaling_group" "bar" {
@@ -33,21 +32,4 @@ resource "aws_autoscaling_group" "bar" {
   target_group_arns   = [var.target_group_arns]
  availability_zones = var.availability_zones
 }
-
-resource "aws_launch_configuration" "as_conf" {
-  depends_on = [aws_db_instance.default]
-  name_prefix   = "my-lc3-cli"
-  image_id      = "ami-0629230e074c580f2"
-  instance_type = t2.micro
-  security_groups    = sg-0bb5391635b3c304es
-  key_name = "jenkins"
-  iam_instance_profile = "ram-s3-role"
-
-
-
-
-
-
-
-
 }
